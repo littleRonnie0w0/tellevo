@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <div id="contenedor">
+    <p class="items">
+      items: 1
+    </p>
+    <div id="productos">
+      <div class="producto" *ngFor="let item of productos">
+        <div class="imagen" style="background-image: url('{{ item.imagen }}');">
+          <ion-icon name="heart" class="like"></ion-icon>
+          <ion-icon name="cart" class="carrito" (click)="addToCart(item)"></ion-icon>
+        </div>
+        <div class="datos">
+          <p class="nombre">{{ item.nombre }}</p>
+          <p class="precio">${{ item.precio }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

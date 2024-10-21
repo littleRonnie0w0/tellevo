@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+  <div id="contenedor">
+    
+    <div class="qr">
+      <ion-icon name="qr-code"(click)="scan()"></ion-icon>
+
+    </div>
+
+
+  </div>
+  <footer id="footer2">
+    <div class="boton">
+      <ion-icon name="home" [routerLink]="['/home']"></ion-icon>
+      <p>Home</p>
+    </div>
+    <div class="boton">
+      <ion-icon name="add-circle" [routerLink]="['/nuevo']"></ion-icon>
+      <p>Nuevo</p>
+    </div>
+    <div class="boton">
+      <ion-icon name="bar-chart" [routerLink]="['/ruta']"></ion-icon>
+      <p>Envíos</p>
+    </div>
+    <div class="boton">
+      <ion-icon name="person"></ion-icon>
+      <p>Perfil</p>
+    </div>
+    <div class="boton">
+      <ion-icon name="cart" [routerLink]="['/carrito']"></ion-icon>
+      <p>Carrito</p>
+      <p class="cantidad" *ngIf="carrito.length > 0">
+        {{carrito.length}}
+      </p>
+    </div>
+  </footer>
+</ion-content>
