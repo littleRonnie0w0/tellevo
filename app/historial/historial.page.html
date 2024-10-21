@@ -1,0 +1,22 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<ion-content [fullscreen]="true">
+  <div id="historial-contenedor">
+    <br>
+    
+    <h1 id="ic">Historial de viajes</h1>
+   <br>
+   
+      
+      <ion-item *ngFor="let viaje of viajes">
+        <ion-icon name="car" slot="start"></ion-icon>
+        <ion-label>
+          <h2>{{ viaje.destino }}</h2>
+          <p>Fecha: {{ viaje.fecha }}</p>
+          <p>Duración: {{ viaje.duracion }}</p>
+          <p>Precio: {{ viaje.precio | currency }}</p>
+        </ion-label>
+      </ion-item>
+   
+  </div>
+</ion-content>

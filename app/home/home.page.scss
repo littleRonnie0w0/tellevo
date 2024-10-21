@@ -1,0 +1,237 @@
+:root {
+  --fondo: #1A3177; /* Tema oscuro */
+  --fondo-input: #101E4A;
+  --texto-input: #909BAD;
+  --icono: #71DB9B;
+  --textos: #FFFFFF;
+}
+
+
+#tema {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: var(--tema);
+}
+
+/* Estilo general para el contenido */
+ion-content {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f0; /* Fondo claro */
+}
+
+/* Estilo de la barra de navegación superior */
+ion-toolbar {
+  --background:var(--tema); /* Fondo azul */
+  --color: white; /* Texto blanco */
+  display: flex;
+  justify-content: space-between; /* Separar logo de los botones */
+  padding: 0 20px; /* Ajustar padding */
+}
+
+/* Imagen y título en el header */
+.ñuber {
+  width: 60px;
+  height: auto;
+  margin-right: 10px;
+  animation: moveIn 1.5s ease-out; /* Añadimos la animación */
+}
+
+/* Definimos la animación para el logo */
+@keyframes moveIn {
+  0% {
+    transform: translateX(100%); /* Comienza desde fuera de la pantalla */
+  }
+  100% {
+    transform: translateX(0); /* Termina en su posición normal */
+  }
+}
+
+ion-title {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilo para el menú */
+ion-menu {
+  --background: #ffffff; /* Fondo blanco */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 15px 20px; /* Ajustar espacio */
+  font-size: 1.2rem; /* Ajustar tamaño del texto */
+  border-bottom: 1px solid #dcdcdc; /* Separador entre opciones */
+}
+
+ul li a {
+  text-decoration: none;
+  color: #5979DB; /* Texto negro */
+  font-weight: bold;
+}
+
+ion-menu-button {
+  color: white; /* Botón de menú en blanco */
+  font-size: 24px;
+}
+
+ion-header {
+  height: 56px; /* Altura similar a la barra de Uber */
+}
+
+/* Imagen principal */
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Contenedor principal de contenido */
+.ion-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* Estilo de las tarjetas */
+.footer-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo claro */
+}
+
+/* Estilo de cada tarjeta */
+.card {
+  text-align: center;
+}
+
+.card ion-icon {
+  font-size: 50px; /* Tamaño grande del ícono */
+  color: #333;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin: 15px 0;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Ajustes para pantallas más grandes */
+@media (min-width: 768px) {
+  .footer-cards {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 40px;
+  }
+}
+
+/* Menú lateral */
+ion-menu {
+  --background: #ffffff; /* Fondo blanco */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #dcdcdc;
+  transition: background-color 0.3s ease; /* Añadir transición para el hover */
+}
+
+ul li a {
+  text-decoration: none;
+  color: #5979DB; /* Texto azul */
+  font-weight: bold;
+  display: block; /* Hace que el link cubra todo el espacio del li */
+}
+
+ul li:hover {
+  background-color: #f0f0f0; /* Fondo cuando se pasa el cursor */
+}
+
+ion-toolbar {
+  --background: #5979DB; /* Fondo azul */
+  --color: white; /* Texto blanco */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+ion-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Añadir espacio entre el logo y el texto */
+  font-size: 20px;
+  font-weight: bold;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.card {
+  text-align: center;
+  background-color: white; /* Fondo blanco para las tarjetas */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease; /* Transición suave */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Efecto de levantar la tarjeta al pasar el cursor */
+}
+
+.card ion-icon {
+  font-size: 50px; /* Tamaño grande del ícono */
+  color: #333;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin: 15px 0;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+ion-icon {
+  font-size: 6rem;
+  color: var(--icono);
+}

@@ -1,0 +1,46 @@
+#contenedor {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  row-gap: 15px;
+  background-color: var(--fondo);
+}
+
+ion-icon#logo {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+ion-item {
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.2); /* Transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px;
+  border: none; /* Eliminar el borde gris */
+  box-shadow: none; /* Eliminar cualquier sombra */
+}
+
+ion-label {
+  color: rgb(255, 255, 255); /* Color del texto de la etiqueta */
+}
+
+
+ion-input {
+  color: rgb(0, 0, 0); /* Color del texto dentro del input */
+}
+
+ion-button {
+  margin-top: 20px;
+  background-color: black !important; /* Asegurarse de que el botón sea negro */
+  color: white !important; /* Asegurarse de que el texto sea blanco */
+  border-radius: 5px;
+}

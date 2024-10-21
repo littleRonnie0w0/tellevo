@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <div id="contenedor-cards">
+    <ion-card *ngFor="let persona of personas" (click)="seleccionarPersona(persona)" class="card">
+      <ion-card-header>
+        <ion-card-title class="pp">
+          {{ persona.nombre }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-icon name="person" class="icono-persona"></ion-icon>
+        <p><strong>Nombre:</strong> {{ persona.nombre }}</p>
+        <p><strong>A dónde va:</strong> {{ persona.destino }}</p>
+        <p><strong>Que cobra:</strong> ${{ persona.precio }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-toast
+      [message]="mensajeToast"
+      [duration]="3000"
+      [color]="colorToast"
+      *ngIf="mensajeToast"
+    ></ion-toast>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="confirmarViaje()">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="confirmarViaje()">Confirmar Viaje</ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+  <!-- Menú lateral -->
+
+  <ion-menu side="start" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Te llevo</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ul>
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="/driver">Conductores</a></li>
+        <li><a href="/registrarsep">Pasajeros</a></li>
+        <li><a href="/about">Acerca De</a></li>
+        <li><a href="/login">Inicio de Sesión</a></li> 
+      </ul>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Contenido principal -->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+
+          <img class="ñuber" src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Ñuber Logo">
+          <p> Te llevo</p>
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Contenedor para la imagen -->
+    <ion-content>
+      
+      <div class="image-container">
+        <img src="https://play-lh.googleusercontent.com/Kpa5YPvhVwF-SIYMum2jnHtmejgYKOILMdI_YiWAGY-pc9XJFI_nir8DekYNqDJEVHQ=w3840-h2160-rw" alt="ub">
+      </div>
+
+      <div class="image-container">
+        <img src="assets/Designer.jpeg" alt="Descripción de la Imagen">
+        
+      </div>
+      <div class="image-container">
+        <img src="assets/Designer (4).jpeg" alt="Descripción de la Imagen">
+        
+      </div>
+      <!-- Sección de contenido -->
+      <div class="footer-cards">
+        <div class="card">
+          <ion-icon src="/assets/protection_jofw39m16kjv.svg" id="logo"></ion-icon>
+          <h3>Amplia disponibilidad y cobertura</h3>
+          <p>Tenemos opciones que se adaptan a tus necesidades de movilidad, ¡encuéntranos ahora en todo Chile!</p>
+        </div>
+        <div class="card">
+          <ion-icon src="/assets/price_zzfh9la6ao82.svg" id="logo"></ion-icon>
+          <h3>Precios bajos</h3>
+          <p>Disfruta de viajes tranquilos y de todos nuestros beneficios sin pagar más.</p>
+        </div>
+        <div class="card">
+          <ion-icon src="/assets/clock_ds6qee3hrf46.svg" id="logo"></ion-icon>
+          <h3>Soporte 24/7</h3>
+          <p>Tu seguridad es nuestra prioridad, por eso contamos con soporte telefónico 24/7 para atender todas tus dudas o solicitudes.</p>
+        </div>
+      </div>
+    </ion-content>
+  </div>
+  
+</ion-content>

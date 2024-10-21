@@ -1,0 +1,71 @@
+:root {
+  --fondo: #1A3177; /* Tema oscuro */
+  --fondo-input: #101E4A;
+  --texto-input: #909BAD;
+  --icono: #71DB9B;
+  --textos: #FFFFFF;
+}
+#contenedor {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura del ion-content */
+    background-color: var(--fondo);
+    ion-icon {
+      font-size: 6rem;
+      color: var(--icono);
+  }
+  }
+  
+  ion-icon#logo {
+    font-size: 6rem; /* Ajusta el tamaño del ícono según sea necesario */
+    margin-bottom: 20px; /* Espacio debajo del ícono */
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  ion-list {
+    margin-top: 20px;
+  }
+  
+  ion-item {
+    --background: #ffffff;
+    --border-color: #dcdcdc;
+    margin-bottom: 10px;
+  }
+  
+  .botones {
+    margin-top: 30px;
+    ion-button {
+      margin: 10px 0;
+    }
+  }
+  
+  ion-list {
+    background-color: transparent; /* Hacer el fondo de la lista transparente */
+}
+
+ion-item {
+    background-color: transparent; /* Hacer transparentes los elementos de la lista */
+    border: none; /* Eliminar los bordes */
+    color: white; /* Asegurar que el texto sea blanco */
+}
+
+ion-label, ion-text {
+    color: white; /* Cambiar el color del texto a blanco */
+}
+
+ion-item::part(native) {
+    background-color: transparent !important; /* Asegurar que todo el fondo sea transparente */
+    color: white !important; /* Asegurar que el texto sea blanco */
+}
+#ic{
+  color : white;
+}

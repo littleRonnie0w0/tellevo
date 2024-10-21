@@ -1,0 +1,48 @@
+
+
+<ion-content [fullscreen]="true">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <ion-header collapse="condense">
+    <ion-toolbar id="ic">
+      <ion-title size="large">Conductor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="contenedor">
+    <ion-icon name="car" id="logo"></ion-icon>
+
+    <h1 id="ic">Información del Conductor</h1>
+    <ion-list>
+      <ion-item>
+        <ion-label>Correo:</ion-label>
+        <ion-text>{{ conductor.email }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre:</ion-label>
+        <ion-text>{{ conductor.nombre }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellidos:</ion-label>
+        <ion-text>{{ conductor.apellidos }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Número de Patente:</ion-label>
+        <ion-text>{{ conductor.patente }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ciudad de Viaje:</ion-label>
+        <ion-text>{{ conductor.ciudad }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio Estimado:</ion-label>
+        <ion-text>{{ conductor.precio }}</ion-text>
+      </ion-item>
+    </ion-list>
+
+    <div class="botones">
+      <ion-button expand="block" color="primary" [routerLink]="['/historial']">Ver Viajes</ion-button>
+      <ion-button expand="block" color="secondary" routerLink="/editar-conductor">Editar Información</ion-button>
+    </div>
+  </div>
+</ion-content>

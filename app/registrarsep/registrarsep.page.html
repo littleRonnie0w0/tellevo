@@ -1,0 +1,17 @@
+<ion-content [fullscreen]="true">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="animarTema()"></ion-icon>
+  <div id="contenedor">
+    <ion-icon name="person-circle-outline" id="logo" ></ion-icon>
+    <h1 >Registrar Pasajero</h1>
+    <input type="text" placeholder="Nombre" (blur)="animarError(0)">
+    <input type="text" placeholder="Apellido" (blur)="animarError(1)">
+    <input type="email" placeholder="Correo electrónico" (blur)="animarError(2)">
+    <input type="text" placeholder="¿Dónde viajas usualmente?" (blur)="animarError(3)">
+    <input type="password" placeholder="Contraseña" (blur)="animarError(4)">
+    <button [routerLink]="['/pasajeros']" >Registrarse</button>
+    <p>Registrar con Google</p>
+    <p id="ic"> <a [routerLink]="['/login']" id="ic">Ya tengo una cuenta, iniciar sesión</a></p>
+  </div>
+</ion-content>
+

@@ -1,0 +1,122 @@
+/* Estilo general para el contenido */
+ion-content {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0; /* Fondo claro */
+  }
+  
+  /* Estilo de la barra de navegación superior */
+  ion-toolbar {
+    --background: #5979DB; /* Fondo azul */
+    --color: white; /* Texto blanco */
+    display: flex;
+    justify-content: space-between; /* Separar logo de los botones */
+    padding: 0 20px; /* Ajustar padding */
+  }
+  
+  /* Imagen y título en el header */
+  .ñuber {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    animation: moveIn 1.5s ease-out; /* Añadimos la animación */
+  }
+  
+  /* Definimos la animación para el logo */
+  @keyframes moveIn {
+    0% {
+      transform: translateX(100%); /* Comienza desde fuera de la pantalla */
+    }
+    100% {
+      transform: translateX(0); /* Termina en su posición normal */
+    }
+  }
+  
+  ion-title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Estilo para el menú */
+  ion-menu {
+    --background: #ffffff; /* Fondo blanco */
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul li {
+    padding: 15px 20px; /* Ajustar espacio */
+    font-size: 1.2rem; /* Ajustar tamaño del texto */
+    border-bottom: 1px solid #dcdcdc; /* Separador entre opciones */
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: #5979DB; /* Texto negro */
+    font-weight: bold;
+  }
+  
+  ion-menu-button {
+    color: white; /* Botón de menú en blanco */
+    font-size: 24px;
+  }
+  
+  ion-header {
+    height: 56px; /* Altura similar a la barra de Uber */
+  }
+  
+  /* Imagen principal */
+  .image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  ion-toolbar {
+    --background: #5979DB; /* Fondo azul */
+    --color: white; /* Texto blanco */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  ion-title {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Añadir espacio entre el logo y el texto */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  p{
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px; // Opcional, para añadir un poco de espacio alrededor del texto
+    color: #5979DB;
+  }
+  

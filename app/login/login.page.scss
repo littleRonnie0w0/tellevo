@@ -1,0 +1,70 @@
+:root {
+    --fondo: #1A3177; /* Tema oscuro */
+    --fondo-input: #101E4A;
+    --texto-input: #909BAD;
+    --icono: #71DB9B;
+    --textos: #FFFFFF;
+  }
+  
+#contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    row-gap: 15px;
+    background-color: var(--fondo);
+    
+    ion-icon {
+        font-size: 6rem;
+        color: var(--icono);
+    }
+
+    h1, p {
+        color: var(--textos);
+    }
+
+    input, button {
+        height: 2.5rem;
+        width: 80%;
+        border: none;
+        outline: none;
+        border-radius: 1.25rem;
+        text-align: center;
+    }
+
+    input {
+        color: var(--texto-input);
+        background-color: var(--fondo-input);
+    }
+
+    button {
+        background-color: var(--icono);
+        color: #ffffff;
+        font-size: 1.3rem;
+    }
+}
+
+#tema {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--tema);
+}
+
+#contenedor, input {
+    transition: background-color 0.3s ease;
+}
+
+img {
+    max-width: 55%;
+}
+
+h1 {
+    max-width: 200%;
+}
+
+#ic{
+    color: #FFFFFF;
+}

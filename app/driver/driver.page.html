@@ -1,0 +1,91 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Menú lateral -->
+  <ion-menu side="start" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Te llevo</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ul>
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="/driver">Conductores</a></li>
+        <li><a href="/registrarsep">Pasajeros</a></li>
+        <li><a href="/about">Acerca De</a></li>
+        <li><a href="/login">Inicio de Sessión</a></li>
+      </ul>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Contenido principal -->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          <img class="ñuber" src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Ñuber Logo">
+          <p>Te llevo</p>
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Contenedor para la imagen -->
+    <ion-content>
+  
+   
+    <div   class="text-content" >
+      <h1>      ¿Quieres Trabajar con Nosotros?
+      </h1>
+      <p>
+        
+      ¡Estamos emocionados de conocerte! En Ñuber, siempre estamos buscando personas apasionadas y talentosas para unirse a nuestro equipo. Si eres innovador, comprometido y estás listo para enfrentar nuevos desafíos, ¡nos encantaría saber más de ti!
+    </p>
+    <div class="image-container">
+      <img src="assets/Designer (5).jpeg" alt="Descripción de la Imagen">
+      
+    </div>
+      <h1>¿Quienes somos?</h1>
+      <p>
+      En Ñuber, nos dedicamos a [breve descripción de lo que hace la empresa]. Valoramos el trabajo en equipo, la creatividad y la dedicación. Creemos que nuestros empleados son la clave para nuestro éxito, y trabajamos para crear un ambiente que fomente el crecimiento profesional y personal.
+    </p>
+
+    <div class="image-container">
+      <img src="assets/Designer.jpeg" alt="Descripción de la Imagen">
+      
+        
+    </div>
+
+
+     <h1>¿Porqué unirte a nosotros?</h1>
+     <p>
+      - Oportunidades de Crecimiento: Ofrecemos oportunidades para avanzar en tu carrera y aprender nuevas habilidades.
+      - Ambiente Colaborativo: Trabaja en un entorno de apoyo donde se valoran tus ideas y contribuciones.
+      - Beneficios Atractivos: Disfruta de un paquete de beneficios que incluye [menciona algunos beneficios importantes como seguro médico, horarios flexibles, etc.].
+      - Impacto Real: Contribuye a proyectos que tienen un impacto significativo en nuestra industria y en la vida de las personas.
+      
+    </p>
+
+  <div class="image-container">
+    <img src="assets/Designer (3).jpeg" alt="Descripción de la Imagen">
+    
+      
+  </div>
+    <h1>¿Cómo Puedes Aplicar?</h1>
+    <p>
+      
+      Si estás interesado en ser parte de nuestro equipo, envía tu currículum y carta de presentación a [correo electrónico de contacto] o completa nuestro [formulario de solicitud en línea] en la sección de empleos de nuestra página web. Queremos saber más sobre ti y cómo puedes contribuir a nuestro éxito.
+      
+      ¡Esperamos recibir tu solicitud y conocerte pronto!</p>
+      <p> </p>
+      <br>
+      <p>REGISTRATE CON NOSOTROS AHORA</p>
+      <p><button [routerLink]="['/registrarsec']" >Registrarse</button></p>
+      </div>
+      
+
+     
+</ion-content>

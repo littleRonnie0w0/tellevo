@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="animarTema()"></ion-icon>
+  <div id="contenedor">
+      <ion-icon name="car" id="logo"></ion-icon>
+
+
+    <h1>Te llevo Conductor</h1>
+    <input type="text" placeholder="Correo" (blur)="animarError(0)">
+    <input type="text" placeholder="Nombre" (blur)="animarError(1)">
+    <input type="text" placeholder="Apellidos" (blur)="animarError(2)">
+    <input type="text" placeholder="Número de patente" (blur)="animarError(3)">
+    <input type="text" placeholder="Ciudad a donde viaja" (blur)="animarError(4)">
+    <input type="text" placeholder="Precio estimado" (blur)="animarError(5)">
+    <input type="text" placeholder="Nombre de usuario" (blur)="animarError(6)">
+    <input type="password" placeholder="Contraseña" (blur)="animarError(7)">
+    <button [routerLink]="['/conductor']" >Registrarse</button>
+    <p>Registrar con Google</p>
+    <p id="ic"><a [routerLink]="['/login']"  >Ya tengo una cuenta, Iniciar sesión</a></p>
+
+  </div>
+</ion-content>
+

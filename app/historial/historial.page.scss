@@ -1,0 +1,38 @@
+:root {
+  --fondo: #1A3177; /* Fondo oscuro */
+  --fondo-input: #1A3177; /* Fondo oscuro sin transparencia */
+  --texto-input: #FFFFFF; /* Texto blanco */
+  --icono: #71DB9B; /* Color del ícono */
+  --textos: #FFFFFF; /* Texto en blanco */
+}
+
+/* Estilos generales */
+ion-content, ion-list, ion-item {
+  --background: var(--fondo); /* Fondo uniforme para todo el contenido */
+  color: white; /* Asegura que todo el texto sea blanco */
+}
+
+/* Estilos para ítems específicos dentro de la lista */
+ion-item {
+  background-color: var(--fondo-input) !important; /* Aplica el fondo oscuro, importante para sobrescribir cualquier otro estilo */
+  border: none !important; /* Elimina cualquier borde visible */
+  --inner-border-width: 0; /* Elimina bordes que podrían estar interfiriendo visualmente */
+}
+
+ion-label, h2, p {
+  color: var(--texto) !important; /* Asegura que el texto sea blanco y sobrescribe otros estilos */
+}
+
+ion-icon {
+  color: var(--icono); /* Mantiene el color personalizado para los íconos */
+}
+ion-list{
+  background-color: var(--fondo-input);
+}
+#ic{
+  color: white;
+  justify-content: center;
+  display: flex;
+  
+
+}

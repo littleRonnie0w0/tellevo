@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="animarTema()"></ion-icon>
+  <div id="contenedor">
+<img id="logo"   src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="">    <h1>Te llevo App</h1>
+    <input type="text" placeholder="nombre de usuario" (blur)="animarError(0)" [(ngModel)]="email">
+    <input type="password" placeholder="contraseña" (blur)="animarError(1)" [(ngModel)]="clave">
+    <button (click)="login()" >Ingresar</button>
+    <p (click)="setOpen(true)" id="ic">Olvidé mi contraseña</p>
+    <a [routerLink]="['/registrarsec']" id="ic">Registrarse como conductor</a>
+      <a [routerLink]="['/registrarsep']" id="ic">Registrarse como pasajero</a>
+    
+
+  </div>
+</ion-content>
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+   
+    <ion-content >
+      <div id="contenedor">
+        <img id="logo"   src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt=""> 
+        <h1>Recuperar Clave</h1>
+        <input type="text" placeholder="usuario@gmail.com" [(ngModel)]="email">
+        <button (click)="resetPass ">Recuperar</button>
+        <button (click)="setOpen(false)">Cancelar</button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
