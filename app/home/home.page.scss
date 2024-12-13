@@ -1,237 +1,197 @@
 :root {
-  --fondo: #1A3177; /* Tema oscuro */
-  --fondo-input: #101E4A;
-  --texto-input: #909BAD;
-  --icono: #71DB9B;
-  --textos: #FFFFFF;
+ 
+
+  .dark-theme {
+    --ion-background-color: #003f88;
+    --ion-text-color: #ffffff;
+    --ion-item-background: #0056b3;
+    --ion-item-color: #ffffff;
+    --ion-color-primary: #000000;
+  }
+  
+  .light-theme {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+    --ion-item-background: #f2f2f2;
+    --ion-item-color: #000000;
+    --ion-color-primary: #0056b3;
+    --ion-color-secundari:#25476b;
+  }
 }
-
-
-#tema {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1.5rem;
-  color: var(--tema);
+.tellevo{
+  font-weight: bold;
 }
-
-/* Estilo general para el contenido */
-ion-content {
+/* Estilos generales */
+ion-title {
+  font-weight: bold;
+}
+body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f0f0f0; /* Fondo claro */
 }
 
-/* Estilo de la barra de navegación superior */
-ion-toolbar {
-  --background:var(--tema); /* Fondo azul */
-  --color: white; /* Texto blanco */
-  display: flex;
-  justify-content: space-between; /* Separar logo de los botones */
-  padding: 0 20px; /* Ajustar padding */
+/* Estilos del menú */
+ion-menu ion-content {
+  --background: var(--ion-background-color);
 }
 
-/* Imagen y título en el header */
-.ñuber {
-  width: 60px;
-  height: auto;
+ion-menu ion-toolbar {
+  --background: var(--ion-color-primary);
+ --color: var(--ion-text-color);
+}
+
+ion-menu ion-list {
+  background: transparent;
+}
+
+
+ion-menu ion-item {
+  --background: transparent;
+  --color: var(--ion-text-color);
+}
+
+ion-menu ion-item.selected {
+  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+  --color: var(--ion-text-color);
+}
+
+ion-menu ion-item-divider {
+  --background: transparent;
+  --color: var(--ion-color-medium);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+.menu-logo {
+  max-height: 30px;
   margin-right: 10px;
-  animation: moveIn 1.5s ease-out; /* Añadimos la animación */
 }
 
-/* Definimos la animación para el logo */
-@keyframes moveIn {
+.user-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10%;
+}
+
+
+.user-info ion-label h2 {
+  font-weight: 600;
+}
+
+#correo{
+  color: var(    --ion-text-color);
+
+}
+
+.user-info ion-label p {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+}
+
+/* Estilos del encabezado principal */
+ion-header ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+}
+
+.header-logo {
+  max-height: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Estilos del contenido principal */
+.main-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+
+ion-card {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación del auto en movimiento */
+.moving-car {
+  width: 100px;
+  height: 50px;
+  position: relative;
+  animation: moveCar 10s linear infinite;
+  margin-top: 30px;
+}
+
+.moving-car img {
+  width: 150%;
+  height: auto;
+}
+
+@keyframes moveCar {
   0% {
-    transform: translateX(100%); /* Comienza desde fuera de la pantalla */
+      transform: translateX(0); /* Posición inicial */
+  }
+  50% {
+      transform: translateX(300px); /* Mueve el auto 300px a la derecha */
   }
   100% {
-    transform: translateX(0); /* Termina en su posición normal */
+      transform: translateX(0); /* Vuelve a la posición inicial */
   }
 }
 
-ion-title {
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-}
+/* Estilos para modo oscuro */
 
-p {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-}
 
-/* Estilo para el menú */
-ion-menu {
-  --background: #ffffff; /* Fondo blanco */
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  padding: 15px 20px; /* Ajustar espacio */
-  font-size: 1.2rem; /* Ajustar tamaño del texto */
-  border-bottom: 1px solid #dcdcdc; /* Separador entre opciones */
-}
-
-ul li a {
-  text-decoration: none;
-  color: #5979DB; /* Texto negro */
-  font-weight: bold;
-}
-
-ion-menu-button {
-  color: white; /* Botón de menú en blanco */
-  font-size: 24px;
-}
-
-ion-header {
-  height: 56px; /* Altura similar a la barra de Uber */
-}
-
-/* Imagen principal */
-.image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Contenedor principal de contenido */
-.ion-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ocupa toda la altura de la ventana */
-}
-
-/* Estilo de las tarjetas */
-.footer-cards {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  padding: 20px;
-  background-color: #f9f9f9; /* Fondo claro */
-}
-
-/* Estilo de cada tarjeta */
-.card {
-  text-align: center;
-}
-
-.card ion-icon {
-  font-size: 50px; /* Tamaño grande del ícono */
-  color: #333;
-}
-
-.card h3 {
-  font-size: 1.4rem;
-  margin: 15px 0;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-}
-
-/* Ajustes para pantallas más grandes */
-@media (min-width: 768px) {
-  .footer-cards {
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 40px;
+/* Animación para mover el título y el auto juntos */
+@keyframes moveTitleAndCar {
+  0% {
+    transform: translateX(50%); /* Comienza fuera de la pantalla a la derecha */
+    opacity: 0; /* Inicialmente invisible */
+  }
+  100% {
+    transform: translateX(0); /* Termina en su posición original */
+    opacity: 1; /* Totalmente visible */
   }
 }
 
-/* Menú lateral */
-ion-menu {
-  --background: #ffffff; /* Fondo blanco */
+@keyframes moveTitleAndCard {
+  0% {
+    transform: translateX(50%); /* Comienza fuera de la pantalla a la derecha */
+    opacity: 0; /* Inicialmente invisible */
+  }
+  100% {
+    transform: translateX(0); /* Termina en su posición original */
+    opacity: 1; /* Totalmente visible */
+  }
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  padding: 15px 20px;
-  font-size: 1.2rem;
-  border-bottom: 1px solid #dcdcdc;
-  transition: background-color 0.3s ease; /* Añadir transición para el hover */
-}
-
-ul li a {
-  text-decoration: none;
-  color: #5979DB; /* Texto azul */
-  font-weight: bold;
-  display: block; /* Hace que el link cubra todo el espacio del li */
-}
-
-ul li:hover {
-  background-color: #f0f0f0; /* Fondo cuando se pasa el cursor */
-}
-
-ion-toolbar {
-  --background: #5979DB; /* Fondo azul */
-  --color: white; /* Texto blanco */
+/* Aplica la animación a los elementos del encabezado */
+.header-title-container {
   display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
+  align-items: center; /* Centra verticalmente */
+  animation: moveTitleAndCar 2s forwards; /* Duración de la animación */
 }
 
-ion-title {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Añadir espacio entre el logo y el texto */
-  font-size: 20px;
-  font-weight: bold;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-.card {
-  text-align: center;
-  background-color: white; /* Fondo blanco para las tarjetas */
-  padding: 20px;
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  transition: transform 0.3s ease; /* Transición suave */
+.moving-car {
+  width: 100px;
+  height: 100px;
+  margin-left: 10px; /* Espacio entre el auto y el título */
 }
 
-.card:hover {
-  transform: translateY(-10px); /* Efecto de levantar la tarjeta al pasar el cursor */
+ion-card img {
+  display: block;
+  margin: 0 auto; /* Centra horizontalmente */
+  max-width: 100%; /* Ajusta el tamaño de la imagen al contenedor si es necesario */
+  height: auto; /* Mantiene la proporción de la imagen */
 }
 
-.card ion-icon {
-  font-size: 50px; /* Tamaño grande del ícono */
-  color: #333;
-}
-
-.card h3 {
-  font-size: 1.4rem;
-  margin: 15px 0;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-}
-
-ion-icon {
-  font-size: 6rem;
-  color: var(--icono);
+ion-card-content {
+  text-align: center; /* Centra el texto en el contenido */
 }

@@ -139,6 +139,14 @@ ion-card {
     opacity: 1; /* Totalmente visible */
   }
 }
+.user-icon {
+  font-size: 30px; /* Ajusta el tamaño según sea necesario */
+  width: 80px; /* Opcional: especifica un ancho fijo */
+  height: 80px; /* Opcional: especifica una altura fija */
+  /* Otras propiedades opcionales */
+  color: var(--ion-color-primary);
+}
+
 
 /* Aplica la animación a los elementos del encabezado */
 .header-title-container {
@@ -152,211 +160,68 @@ ion-card {
   height: 50px;
   margin-left: 1px; /* Espacio entre el auto y el título */
 }
-.tellevo{
-  font-weight: bold;
-}
 
 /***********************************************/
 /**                        CSS DE LA VENTANA                     */
-/* historial.page.scss */
-.historial-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.historial-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--ion-color-primary);
-  margin-bottom: 2rem;
+/* Contenedor principal del perfil */#contenedor {
+  padding: 25px;
   text-align: center;
+  background-color: var(--ion-background-color); /* Mismo fondo del tema */
 }
 
-.viajes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Imagen del usuario con diseño circular y borde */
+#user-info .user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--ion-color-primary);
+  margin-top: -60px; /* Levanta la imagen sobre el borde superior */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.viaje-card {
-  background: var(--ion-card-background);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+/* Información del usuario, con tipografía centrada */
+#user-info h2 {
+  font-size: 22px;
+  margin: 10px 0;
+  color: var(--ion-text-color);
+}
+h1{
+  font-weight: bold;
 }
 
-.viaje-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-
-  h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0;
-    color: var(--ion-text-color);
-  }
-
-  ion-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 12px;
-    text-transform: capitalize;
-  }
-}
-
-.viaje-details {
-  p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-    color: var(--ion-color-medium);
-    font-size: 0.9rem;
-
-    ion-icon {
-      font-size: 1.1rem;
-      min-width: 20px;
-    }
-  }
-}
-
-.viaje-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  
-  ion-button {
-    --padding-start: 0.5rem;
-    --padding-end: 0.5rem;
-  }
-}
-
-.no-viajes {
-  text-align: center;
-  padding: 3rem 1rem;
+#user-info p {
   color: var(--ion-color-medium);
-
-  .empty-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-  }
+  font-size: 16px;
 }
 
+p{
+  font-weight: bolder;
+}
+
+/* Ajuste de los ion-items para alinearlos mejor */
 ion-icon {
   color: var(--ion-color-medium);
   font-size: 1.5rem;}
 
-// Responsive adjustments
-@media (max-width: 576px) {
-  .historial-container {
-    padding: 0.5rem;
-  }
 
-  .historial-title {
-    font-size: 1.5rem;
-  }
-
-  .viaje-card {
-    padding: 0.8rem;
-  }
+ion-label {
+  color: var(--ion-color-primary);
 }
 
-
-/* Animación del auto en movimiento */
-.moving-car {
-  width: 100px;
-  height: 50px;
-  position: relative;
-  animation: moveCar 10s linear infinite;
-  margin-top: 30px;
+/* Botón de editar perfil */
+#button {
+  margin-top: 25px;
+  --background: var(--ion-color-primary);
 }
 
-.moving-car img {
-  width: 150%;
-  height: auto;
+/* Ajuste de los ítems en lista */
+ion-item p {
+  font-weight: normal;
+  color: var(--ion-text-color);
 }
 
-@keyframes moveCar {
-  0% {
-      transform: translateX(0); /* Posición inicial */
-  }
-  50% {
-      transform: translateX(300px); /* Mueve el auto 300px a la derecha */
-  }
-  100% {
-      transform: translateX(0); /* Vuelve a la posición inicial */
-  }
+ion-icon{
+  size: 3000px;
 }
 
-/* Estilos para modo oscuro */
-
-
-/* Animación para mover el título y el auto juntos */
-@keyframes moveTitleAndCar {
-  0% {
-    transform: translateX(50%); /* Comienza fuera de la pantalla a la derecha */
-    opacity: 0; /* Inicialmente invisible */
-  }
-  100% {
-    transform: translateX(0); /* Termina en su posición original */
-    opacity: 1; /* Totalmente visible */
-  }
-}
-
-
-
-.moving-car {
-  width: 150px;
-  height: 150px;
-  margin-left: 10px; /* Espacio entre el auto y el título */
-}
-
-.viaje-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px;
-
-  ion-button {
-    --padding-start: 8px;
-    --padding-end: 8px;
-    height: 36px;
-
-    ion-icon {
-      font-size: 20px;
-    }
-
-    &[color="primary"] {
-      --color: var(--ion-color-primary);
-    }
-
-    &[color="danger"] {
-      --color: var(--ion-color-danger);
-    }
-  }
-}
-
-.viaje-card {
-  position: relative;
-  
-  .viaje-actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 4px;
-  }
-}

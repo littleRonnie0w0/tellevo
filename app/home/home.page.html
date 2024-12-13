@@ -1,75 +1,140 @@
-<ion-content [fullscreen]="true" class="ion-padding">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<ion-app>
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title class="menu-logo">
+        Te Llevo App
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-content>
+    <ion-list lines="none">
+      <ion-item class="user-info">
+        <ion-avatar slot="start">
+          <ion-icon id="correo" name="person-circle" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ nombre || 'Usuario' }}</h2>
+          <h2>{{ apellido }}</h2>
+          <p id="correo">{{ gmail }}</p>
+        </ion-label>
+      </ion-item>
 
-  <!-- Menú lateral -->
+      <ion-item-divider>
+        <ion-label id="correo">Navegación</ion-label>
+      </ion-item-divider>
 
-  <ion-menu side="start" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Te llevo</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ul>
-        <li><a href="/home">Inicio</a></li>
-        <li><a href="/driver">Conductores</a></li>
-        <li><a href="/registrarsep">Pasajeros</a></li>
-        <li><a href="/about">Acerca De</a></li>
-        <li><a href="/login">Inicio de Sesión</a></li> 
-      </ul>
-    </ion-content>
-  </ion-menu>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item button routerLink="/home" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="home-outline"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
 
-  <!-- Contenido principal -->
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>
+        <!-- Botón Crear viaje condicionado -->
+        <!-- Botón Crear viaje condicionado -->
+        <ion-item button 
+          *ngIf="tienePatente"
+          routerLink="/crear" 
+          routerDirection="root" 
+          routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+          <ion-label>Crear viaje</ion-label>
+        </ion-item>
 
-          <img class="ñuber" src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Ñuber Logo">
-          <p> Te llevo</p>
-        </ion-title>
-        <ion-buttons slot="end">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+        <!-- Botón alternativo cuando no tiene patente -->
+        <!-- <ion-item button 
+          *ngIf="tienePatente"
+          (click)="mostrarMensajeNoPatente()">
+          <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+          <ion-label>Crear viaje</ion-label>
+        </ion-item> -->
 
-    <!-- Contenedor para la imagen -->
-    <ion-content>
-      
-      <div class="image-container">
-        <img src="https://play-lh.googleusercontent.com/Kpa5YPvhVwF-SIYMum2jnHtmejgYKOILMdI_YiWAGY-pc9XJFI_nir8DekYNqDJEVHQ=w3840-h2160-rw" alt="ub">
-      </div>
+        <ion-item button routerLink="/solicitar" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="car-outline"></ion-icon>
+          <ion-label>Solicitar viaje</ion-label>
+        </ion-item>
 
-      <div class="image-container">
-        <img src="assets/Designer.jpeg" alt="Descripción de la Imagen">
-        
-      </div>
-      <div class="image-container">
-        <img src="assets/Designer (4).jpeg" alt="Descripción de la Imagen">
-        
-      </div>
-      <!-- Sección de contenido -->
-      <div class="footer-cards">
-        <div class="card">
-          <ion-icon src="/assets/protection_jofw39m16kjv.svg" id="logo"></ion-icon>
-          <h3>Amplia disponibilidad y cobertura</h3>
-          <p>Tenemos opciones que se adaptan a tus necesidades de movilidad, ¡encuéntranos ahora en todo Chile!</p>
-        </div>
-        <div class="card">
-          <ion-icon src="/assets/price_zzfh9la6ao82.svg" id="logo"></ion-icon>
-          <h3>Precios bajos</h3>
-          <p>Disfruta de viajes tranquilos y de todos nuestros beneficios sin pagar más.</p>
-        </div>
-        <div class="card">
-          <ion-icon src="/assets/clock_ds6qee3hrf46.svg" id="logo"></ion-icon>
-          <h3>Soporte 24/7</h3>
-          <p>Tu seguridad es nuestra prioridad, por eso contamos con soporte telefónico 24/7 para atender todas tus dudas o solicitudes.</p>
-        </div>
-      </div>
-    </ion-content>
-  </div>
+        <ion-item button routerLink="/historial" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="clipboard-outline"></ion-icon>
+          <ion-label>Historial</ion-label>
+        </ion-item>
+
+        <ion-item button routerLink="/perfil-usuario" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="person-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-item-divider>
+        <ion-label id="correo">Configuración</ion-label>
+      </ion-item-divider>
+
+      <ion-item button (click)="toggleTheme()">
+        <ion-icon id="correo" slot="start" [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+        <ion-label>Cambiar modo</ion-label>
+      </ion-item>
+
+      <ion-item button (click)="cerrarSesion()">
+        <ion-icon id="correo" slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <div class="header-title-container">
+          <img class="header-logo"  src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Te Llevo Logo">
+          <p class="tellevo">Te Llevo app</p>     </div>
+    </ion-toolbar>
+  </ion-header>
   
-</ion-content>
+
+  <ion-content class="ion-padding">
+    <h1 class="main-title" id="correo">¿Qué es Te Llevo App?</h1>
+    <ion-card>
+      <img src="assets/dus.png" alt="Descripción de la Imagen">
+      <ion-card-content>
+        <p class="description">Te Llevo App conecta a estudiantes de Duoc UC para compartir sus trayectos diarios.</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="assets/des.png" alt="Descripción de la Imagen">
+      <ion-card-content>
+        <p>La plataforma facilita que los compañeros coordinen viajes, reduciendo costos.</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="assets/Designer.jpeg" alt="Descripción de la Imagen">
+      <ion-card-content>
+        <p>Fomenta el compañerismo y contribuye a un transporte más sostenible.</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="assets/Designer (1).jpeg" alt="Descripción de la Imagen">
+      <ion-card-content>
+        <p>Al compartir rutas, se crea una comunidad más cercana y colaborativa dentro de Duoc UC.</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <img src="assets/qr.png" alt="Descripción de la Imagen">
+      <ion-card-content>
+        <p>Descarga la APP en tu celular</p>
+      </ion-card-content>
+    </ion-card>
+    
+    <div class="moving-car">
+      <img src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Te Llevo Logo">
+    </div>
+  </ion-content>
+  
+
+  
+</ion-app>

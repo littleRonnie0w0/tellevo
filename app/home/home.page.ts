@@ -1,66 +1,145 @@
-import { Component, OnInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { ThemeService } from '../services/theme.service';
+import { Router } from '@angular/router';
+import { LoadingController, AlertController } from '@ionic/angular'; 
 
+interface UserProfile {
+  nombre: string;
+  apellido: string;
+  email: string;
+  tieneAuto: 'si' | 'no';
+  patente?: string;
+}
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
+export class HomePage {
+  nombre: string = '';
+  apellido: string = '';
+  gmail: string = '';
+  isDarkMode: boolean = false;
+  tienePatente: boolean = false;
 
-export class HomePage implements OnInit {
-  icono = "oscuro";
+  constructor(
+    private menu: MenuController, 
+    private themeService: ThemeService,
+    private router: Router,
+    private loadingController: LoadingController,
+    private alertController: AlertController
+  ) {
+    this.isDarkMode = this.themeService.getTheme();
+  }
+
+  openMenu() {
+    console.log('Menu abierto');
+    this.menu.open('first');
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+    this.isDarkMode = this.themeService.getTheme();
+  }
   
-  constructor(private anim: AnimationController) {}
+  ngOnInit() {
+    this.loadUserData();
+  }
 
-  cambiarTema() {
-    if (this.icono == "oscuro") {
-      // Tema oscuro
-      document.documentElement.style.setProperty("--fondo", "#1A3177");
-      document.documentElement.style.setProperty("--fondo-input", "#101E4A");
-      document.documentElement.style.setProperty("--texto-input", "#909BAD");
-      document.documentElement.style.setProperty("--icono", "#71DB9B");
-      document.documentElement.style.setProperty("--textos", "#FFFFFF");
-      this.icono = "claro";
-    } else {
-      // Tema claro
-      document.documentElement.style.setProperty("--fondo", "#3C59AC");
-      document.documentElement.style.setProperty("--fondo-input", "#ffffff");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
-      document.documentElement.style.setProperty("--icono", "#5BC3EC");
-      document.documentElement.style.setProperty("--textos", "#000000");
-      this.icono = "oscuro";
+  loadUserData() {
+    try {
+      const email = localStorage.getItem('loggedInUserEmail');
+      if (!email) {
+        this.router.navigate(['/login']);
+        return;
+      }
+  
+      const storedUserData = localStorage.getItem(email);
+      if (!storedUserData) {
+        console.log('No se encontraron datos para el usuario:', email);
+        this.router.navigate(['/login']);
+        return;
+      }
+  
+      const userData: UserProfile = JSON.parse(storedUserData);
+      this.nombre = userData.nombre;
+      this.apellido = userData.apellido;
+      this.gmail = email;
+      
+      // Verificar si el usuario tiene auto y patente
+      this.tienePatente = userData.tieneAuto === 'si' && !!userData.patente;
+      
+      console.log('Datos cargados:', userData);
+    } catch (error) {
+      console.error('Error al cargar datos:', error);
+      this.router.navigate(['/login']);
     }
   }
 
-  ngOnInit() {
-    this.anim.create()
-    
+  async mostrarMensajeNoPatente() {
+    const alert = await this.alertController.create({
+      header: 'Acceso Denegado',
+      message: 'Para crear viajes necesitas tener un vehículo y patente registrada. Por favor, actualiza tu perfil.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Ir a Perfil',
+          handler: () => {
+            this.router.navigate(['/perfil-usuario']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
-  animarTema() {
-    this.anim.create()
-    .addElement(document.querySelector('#tema')!)
-    .duration(500)
-    .fromTo("transform", "rotate(0deg)", "rotate(60deg)")
-    .onFinish(() => {
-      this.cambiarTema();
-    }).play();
-  }
-
-  animarError(index: number) {
-    this.anim.create()
-    .addElement(document.querySelectorAll("input")[index])
-    .duration(100)
-    .iterations(3)
-    .keyframes([
-      { offset: 0, border: "1px transparent solid", transform: "translateX(0px)" },
-      { offset: 0.25, border: "1px red solid", transform: "translateX(-5px)" },
-      { offset: 0.50, border: "1px transparent solid", transform: "translateX(0px)" },
-      { offset: 0.75, border: "1px red solid", transform: "translateX(5px)" },
-      { offset: 1, border: "1px transparent solid", transform: "translateX(0px)" },
-    ]).play();
+  async cerrarSesion() {
+    const alert = await this.alertController.create({
+      header: 'Cerrar Sesión',
+      message: '¿Estás seguro que deseas cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Sí, cerrar sesión',
+          handler: async () => {
+            const loading = await this.loadingController.create({
+              message: 'Cerrando sesión...',
+              duration: 2000
+            });
+  
+            await loading.present();
+  
+            try {
+              localStorage.removeItem('loggedInUserEmail');
+              
+              this.nombre = '';
+              this.apellido = '';
+              this.gmail = '';
+  
+              setTimeout(async () => {
+                await loading.dismiss();
+                this.router.navigate(['/login'], { replaceUrl: true });
+              }, 2000);
+  
+            } catch (error) {
+              console.error('Error al cerrar sesión:', error);
+              await loading.dismiss();
+              this.router.navigate(['/login'], { replaceUrl: true });
+            }
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 }
-  
-

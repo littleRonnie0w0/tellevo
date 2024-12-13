@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AnimationController, LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { AnimationController, LoadingController } from '@ionic/angular';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-login',
@@ -9,118 +10,210 @@ import { AnimationController, LoadingController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   icono = "oscuro";
   usuarios = [
     {
       nombre: "Sebastian Negro",
       email: "sebanegro23@gmail.com",
-      clave: "sebas123"
-    },
-    {
-      nombre: "RosaGarrido",
-      email: "garrido.rosa2004@gmail.com",
-      clave: "amigo123"
+      password: "sebas123"
     }
-  ]
+  ];
+  
   isModalOpen = false;
-  email = ""
-  clave = ""
+  email = "";
+  password = ""; 
 
-  constructor(private anim: AnimationController, private http: HttpClient,private loadingCtrl: LoadingController, private router:Router) {}
+  passwordType = 'password';
+  passwordIcon = 'eye-off-outline';
+  isDarkMode = false;
+
+  constructor(
+    private anim: AnimationController,
+    private http: HttpClient,
+    private loadingCtrl: LoadingController,
+    private router: Router,
+    private themeService: ThemeService,
+    private alertController: AlertController
+  ) {}
+
+  ngOnInit() {
+    this.isDarkMode = this.themeService.getTheme();
+  }
+
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
-  login(){
-    for(let u of this.usuarios){
-      if(u.email == this.email && u.clave == this.clave){
-        console.log(`Bienvenido ${u.nombre}!`)
-        this.router
-        return
-      }
+  async login() {
+    if (!this.email || !this.password
+    ) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor, complete todos los campos',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
     }
-    console.log("datos incorectos!.")
-  }
 
-  cambiarTema(){
-    if(this.icono == "oscuro"){
-      document.documentElement.style.setProperty("--fondo", "#282829");
-      document.documentElement.style.setProperty("--fondo-input", "#263f51");
-      document.documentElement.style.setProperty("--texto-input", "#909BAD");
+    const loading = await this.loadingCtrl.create({
+      message: 'Iniciando sesión...',
+      duration: 1500
+    });
+    await loading.present();
+
+    try {
+      const usuarioGuardado = localStorage.getItem(this.email);
       
-      this.icono = "claro"
-    }else{
-      document.documentElement.style.setProperty("--fondo", "#454E5F");
-      document.documentElement.style.setProperty("--fondo-input", "#ffffff");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
-      this.icono = "oscuro"
+      if (!usuarioGuardado) {
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Usuario no encontrado',
+          buttons: ['OK']
+        });
+        await alert.present();
+        return;
+      }
+    
+      const usuario = JSON.parse(usuarioGuardado);
+    
+      if (usuario.password === this.password
+      ) { // Cambiado de password a clave
+        // Guardar el email del usuario logueado
+        localStorage.setItem('loggedInUserEmail', this.email);
+        
+        setTimeout(async () => {
+          await loading.dismiss();
+          this.router.navigate(['/home'], { replaceUrl: true });
+        }, 1500);
+      } else {
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Contraseña incorrecta',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    } catch (error) {
+      console.error('Error en login:', error);
+      await loading.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Ocurrió un error al iniciar sesión',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
   }
-
   
- async resetPass(){
-  const loading = await this.loadingCtrl.create({
+  async resetPass() {
+    if (!this.email) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor, ingrese un correo electrónico',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+    const loading = await this.loadingCtrl.create({
       message: 'Cargando...',
     });
+    await loading.present();
   
-      for(let u of this.usuarios){
-        if(u.email == this.email){
-        let nueva = Math.random().toString(36).slice(-6)
-          u.clave = nueva
-         let body ={
-        "nombre": "Nombre del usuario",
-        "app": "Te llevo app",
-        "clave": nueva,
-        "email": "elemaildelusuario@algo.com"
-    }
-      this.http.post("https://myths.cl/api/reset_password.php",body)
-      .subscribe((data)=>{
-        console.log(data)
-        loading.dismiss()
-      })    
+    try {
+      // First check local storage
+      const usuarioGuardado = localStorage.getItem(this.email);
+      let usuario;
       
-      
-      return
+      if (usuarioGuardado) {
+        usuario = JSON.parse(usuarioGuardado);
+      } else {
+        // If not in localStorage, check the usuarios array
+        usuario = this.usuarios.find(u => u.email === this.email);
+        
+        if (!usuario) {
+          loading.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: 'Usuario no encontrado',
+            buttons: ['OK']
+          });
+          await alert.present();
+          return;
         }
       }
-      console.log("datos incorectos!.")
   
+      // Generate new password
+      const nueva = Math.random().toString(36).slice(-6);
+      
+      let body = {
+        "nombre": usuario.nombre,
+        "app": "Te llevo app",
+        "clave": nueva,
+        "email": this.email
+      };
+  
+      this.http.post("https://myths.cl/api/reset_password.php", body)
+        .subscribe({
+          next: async (data) => {
+            // Update password in localStorage if user exists there
+            if (usuarioGuardado) {
+              usuario.password = nueva;
+              localStorage.setItem(this.email, JSON.stringify(usuario));
+            }
+            
+            // Update password in usuarios array if user exists there
+            const userIndex = this.usuarios.findIndex(u => u.email === this.email);
+            if (userIndex !== -1) {
+              this.usuarios[userIndex].password = nueva;
+            }
+            
+            loading.dismiss();
+            
+            // Show alert with new password
+            const alert = await this.alertController.create({
+              header: 'Contraseña Restablecida',
+              message: `Su nueva contraseña es: ${nueva}\n\nTambién se ha enviado a su correo electrónico.`,
+              buttons: ['OK']
+            });
+            await alert.present();
+            this.setOpen(false);
+          },
+          error: async (err) => {
+            console.error(err);
+            loading.dismiss();
+            const alert = await this.alertController.create({
+              header: 'Error',
+              message: 'No se pudo resetear la contraseña',
+              buttons: ['OK']
+            });
+            await alert.present();
+          }
+        });
+    } catch (error) {
+      console.error('Error in resetPass:', error);
+      loading.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Ha ocurrido un error',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
-  
-
-  ngOnInit() {
-    this.anim.create()
-    .addElement(document.querySelector('#logo')!)
-    .duration(1500)
-    .iterations(Infinity)
-    .fromTo("color", "#5BC3EC","#71DB9B")
-    .fromTo("transform", "scale(0.5) rotate(0deg)", "scale(0.75) rotate(0deg)")
-    .direction("alternate")
-    .play();
   }
 
-  animarTema() {
-    this.anim.create()
-    .addElement(document.querySelector('#tema')!)
-    .duration(500)
-    .fromTo("transform", "rotate(0deg)", "rotate(60deg)")
-    .onFinish(() => {
-      this.cambiarTema();
-    }).play();
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordType === 'text' ? 'eye-outline' : 'eye-off-outline';
   }
 
-  animarError(index: number) {
-    this.anim.create()
-    .addElement(document.querySelectorAll("input")[index])
-    .duration(100)
-    .iterations(3)
-    .keyframes([
-      { offset: 0, border: "1px transparent solid", transform: "translateX(0px)" },
-      { offset: 0.25, border: "1px red solid", transform: "translateX(-5px)" },
-      { offset: 0.50, border: "1px transparent solid", transform: "translateX(0px)" },
-      { offset: 0.75, border: "1px red solid", transform: "translateX(5px)" },
-      { offset: 1, border: "1px transparent solid", transform: "translateX(0px)" },
-    ]).play();
+  toggleTheme() {
+    this.themeService.toggleTheme();
+    this.isDarkMode = this.themeService.getTheme();
   }
 }

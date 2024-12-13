@@ -17,6 +17,23 @@
     --ion-color-primary: #0056b3;
   }
 }
+.tellevo{
+  font-weight: bold;
+}
+.no-viajes {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  height: 50vh;           /* Ocupa toda la altura de la pantalla */
+  font-size: 1rem;       /* Tamaño de la fuente */
+  text-align: center;      /* Alinea el texto en el centro */
+}
+
+
+ion-icon {
+  color: var(--ion-color-medium);
+  font-size: 1.5rem;
+}
+
 
 /* Estilos generales */
 body {
@@ -147,129 +164,75 @@ ion-card {
   animation: moveTitleAndCar 2s forwards; /* Duración de la animación */
 }
 
-.moving-car {
-  width: 50px;
-  height: 50px;
-  margin-left: 1px; /* Espacio entre el auto y el título */
-}
-.tellevo{
-  font-weight: bold;
-}
+
 
 /***********************************************/
 /**                        CSS DE LA VENTANA                     */
-/* historial.page.scss */
-.historial-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
+
+#map {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 100;
 }
 
-.historial-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--ion-color-primary);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.viajes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.viaje-card {
-  background: var(--ion-card-background);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-}
-
-.viaje-header {
+#info-viaje {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-
-  h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0;
-    color: var(--ion-text-color);
-  }
-
-  ion-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 12px;
-    text-transform: capitalize;
-  }
+  padding: 10px;
+  font-weight: bold;
+  z-index: 101;
 }
 
-.viaje-details {
-  p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-    color: var(--ion-color-medium);
-    font-size: 0.9rem;
-
-    ion-icon {
-      font-size: 1.1rem;
-      min-width: 20px;
-    }
-  }
+#input {
+  position: absolute;
+  bottom: 5rem;
+  left: 10%;
+  width: 80%;
+  height: 3rem;
+  border-radius: 10px;
+  background-color: #ffffff85;
+  z-index: 100;
 }
 
-.viaje-actions {
+
+#rutas {
+  position: absolute;
+  bottom: 9rem;
+  left: 10%;
+  width: 80%;
+  height: fit-content;
+  z-index: 100;
+  background-color: #ffffffc7;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ruta {
+  height: 2.4rem;
+  border-bottom: 1px #e3e3e3 solid;
+  line-height: 2.4rem;
+}
+
+.ruta:last-child{
+  border-bottom: none;
+}
+
+
+#info-viaje div{
   display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  
-  ion-button {
-    --padding-start: 0.5rem;
-    --padding-end: 0.5rem;
-  }
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
 }
 
-.no-viajes {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--ion-color-medium);
 
-  .empty-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-  }
-}
-
-ion-icon {
-  color: var(--ion-color-medium);
-  font-size: 1.5rem;}
-
-// Responsive adjustments
-@media (max-width: 576px) {
-  .historial-container {
-    padding: 0.5rem;
-  }
-
-  .historial-title {
-    font-size: 1.5rem;
-  }
-
-  .viaje-card {
-    padding: 0.8rem;
-  }
+#input {
+  color: black; 
 }
 
 
@@ -314,11 +277,27 @@ ion-icon {
   }
 }
 
+@keyframes moveTitleAndCard {
+  0% {
+    transform: translateX(50%); /* Comienza fuera de la pantalla a la derecha */
+    opacity: 0; /* Inicialmente invisible */
+  }
+  100% {
+    transform: translateX(0); /* Termina en su posición original */
+    opacity: 1; /* Totalmente visible */
+  }
+}
 
+/* Aplica la animación a los elementos del encabezado */
+.header-title-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  animation: moveTitleAndCar 2s forwards; /* Duración de la animación */
+}
 
 .moving-car {
-  width: 150px;
-  height: 150px;
+  width: 70px;
+  height: 70px;
   margin-left: 10px; /* Espacio entre el auto y el título */
 }
 
@@ -360,3 +339,5 @@ ion-icon {
     padding: 4px;
   }
 }
+
+

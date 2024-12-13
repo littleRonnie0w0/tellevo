@@ -1,31 +1,56 @@
-<ion-content [fullscreen]="true">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-  <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="animarTema()"></ion-icon>
+<ion-content [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
   <div id="contenedor">
-<img id="logo"   src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="">    <h1>Te llevo App</h1>
-    <input type="text" placeholder="nombre de usuario" (blur)="animarError(0)" [(ngModel)]="email">
-    <input type="password" placeholder="contraseña" (blur)="animarError(1)" [(ngModel)]="clave">
-    <button (click)="login()" >Ingresar</button>
-    <p (click)="setOpen(true)" id="ic">Olvidé mi contraseña</p>
-    <a [routerLink]="['/registrarsec']" id="ic">Registrarse como conductor</a>
-      <a [routerLink]="['/registrarsep']" id="ic">Registrarse como pasajero</a>
-    
+<br>
+<br>
+    <ion-button class="theme-toggle" fill="clear" (click)="toggleTheme()">
+      <ion-icon  [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+    </ion-button>
+    <h1 class="app-title" >TE LLEVO APP</h1>
+    <img src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Car Image" class="car-image">
+    <h2 class="login-title">Inicio de sesión</h2>
 
+
+    <ion-item id="correo">
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item id="correo">
+      
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [type]="passwordType" [(ngModel)]="password"></ion-input>
+      <ion-icon 
+        slot="end"
+        [name]="passwordIcon"
+        (click)="togglePasswordVisibility()"
+        class="password-toggle"
+      ></ion-icon>
+    </ion-item>
+
+    <ion-button expand="block" (click)="login()">Ingresar</ion-button>
+    <p (click)="setOpen(true)" id="correo">Olvidé mi contraseña</p>
+    <p [routerLink]="['/registro']" id="correo">Registrarse</p>
   </div>
 </ion-content>
-
-<ion-modal [isOpen]="isModalOpen">
+<ion-modal [isOpen]="isModalOpen" [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
   <ng-template>
    
     <ion-content >
+      
       <div id="contenedor">
-        <img id="logo"   src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt=""> 
-        <h1>Recuperar Clave</h1>
-        <input type="text" placeholder="usuario@gmail.com" [(ngModel)]="email">
-        <button (click)="resetPass ">Recuperar</button>
-        <button (click)="setOpen(false)">Cancelar</button>
+        <h1 class="app-title" >TE LLEVO APP</h1>
+
+        <img class="car-image"  src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt=""> 
+        <h2>Recuperar Clave</h2>
+        <ion-item id="correo">
+          <ion-input type="text" placeholder="usuario@gmail.com" [(ngModel)]="email"></ion-input>
+       </ion-item>
+        <br>
+        <ion-button (click)="resetPass()">Recuperar</ion-button>
+        <ion-button (click)="setOpen(false)">Cancelar</ion-button>
       </div>
     </ion-content>
   </ng-template>
-</ion-modal>
+</ion-modal> 
+

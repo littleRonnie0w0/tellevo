@@ -1,70 +1,148 @@
-:root {
-    --fondo: #1A3177; /* Tema oscuro */
-    --fondo-input: #101E4A;
-    --texto-input: #909BAD;
-    --icono: #71DB9B;
-    --textos: #FFFFFF;
-  }
-  
 #contenedor{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    row-gap: 15px;
-    background-color: var(--fondo);
+    min-height: 90vh;
+   
+
+    .theme-toggle {
+        margin-top: 10px; 
+        margin-left: auto;
+        margin-right: 70px; 
+        color: var(--ion-text-color);
+      }
+      .theme-toggle ion-icon {
+       
+        font-size: 30px;
+      }
+   
+}
+  
+
+  .car-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  #correo {
+    --background: var(--ion-item-background); 
+    --border-radius: 20px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    margin-bottom: 20px;
+    margin-bottom: 16px;
+    width: 90%;  
+    max-width: 400px;
     
-    ion-icon {
-        font-size: 6rem;
-        color: var(--icono);
-    }
-
-    h1, p {
-        color: var(--textos);
-    }
-
-    input, button {
-        height: 2.5rem;
-        width: 80%;
-        border: none;
-        outline: none;
-        border-radius: 1.25rem;
-        text-align: center;
-    }
-
-    input {
-        color: var(--texto-input);
-        background-color: var(--fondo-input);
-    }
-
-    button {
-        background-color: var(--icono);
-        color: #ffffff;
-        font-size: 1.3rem;
-    }
+  }
+  #correo2 {
+    --background: var(--ion-item-background); 
+    --border-radius: 20px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    margin-bottom: 20px;
+    margin-bottom: 16px;
+    width: 90%;  
+    max-width: 400px;
+    
+  }
+ion-list{
+  background-color: var( --ion-background-color);
+}
+  p{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }
 
-#tema {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    color: var(--tema);
+
+ ion-icon.password-toggle {
+  right: 20px; 
+  top: 1000%;  
+  transform: translateY(50%);
+  font-size: 27px;  
+  cursor: pointer;  /* Hace el icono clicable */
 }
 
-#contenedor, input {
-    transition: background-color 0.3s ease;
+  .dark-theme {
+    --ion-background-color: #003f88;
+    --ion-text-color: #ffffff;
+    --ion-item-background: #0056b3;
+    --ion-item-color: #ffffff;
+    --ion-color-primary: #000000;
+  }
+  
+  .light-theme {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+    --ion-item-background: #f2f2f2;
+    --ion-item-color: #000000;
+    --ion-color-primary: #0056b3;
+  }
+  h1[_ngcontent-ng-c3502546197].app-title, h2 {
+    color: var(--ion-color-primary) !important;
+    font-weight: bold;
+}
+@keyframes moveCar {
+  0% {
+    transform: translateX(+100%); /* Empieza fuera de la pantalla por la izquierda */
+  }
+  50% {
+    transform: translateX(-100%); 
+  }100% {
+    transform: translateX(0); /* Se queda en el centro */
+  }
 }
 
-img {
-    max-width: 55%;
+.car-image {
+  width: 200px;
+  height: auto;
+  animation: moveCar 5s ease-in-out forwards; /* Duración de 5 segundos, se queda en el centro al final */
+  position: relative;
 }
 
-h1 {
-    max-width: 200%;
+ion-button.theme-toggle ion-icon {
+  color: var(--ion-color-primary) !important; /* Cambia esto al color que desees */
 }
 
-#ic{
+.app-title, .login-title, .idd{
+  color: var(--ion-background-color);
+}
+
+/* Si quieres que los títulos cambien en el tema oscuro y claro */
+.dark-theme .app-title,
+.dark-theme .login-title {
+  color: #ffffff; /* Color para el tema oscuro */
+}
+
+.light-theme .app-title,
+.light-theme .login-title {
+  color: #000000; /* Color para el tema claro */
+}
+
+  
+  #ic{
     color: #FFFFFF;
+}
+
+//REESTABLECER CONTRASERÑA
+#contenedor-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; 
+    padding: 20px; 
+}
+
+#contenedor-modal input {
+    margin-bottom: 20px; 
+    width: 90%; /* Consistente con el login */
+    max-width: 400px; 
+}
+
+#contenedor-modal button {
+    margin-top: 10px; 
 }

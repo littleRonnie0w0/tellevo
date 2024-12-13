@@ -1,0 +1,218 @@
+<ion-app>
+ 
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>
+        Te Llevo App
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list lines="none">
+      <ion-item class="user-info">
+        <ion-avatar slot="start">
+          <ion-icon id="correo" name="person-circle" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ nombre || 'Usuario' }}</h2>
+          <h2>{{ apellido }}</h2>
+          <p id="correo">{{ gmail }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>
+        <ion-label id="correo">Navegación</ion-label>
+      </ion-item-divider>
+
+      <ion-menu-toggle auto-hide="false">
+        <ion-item button routerLink="/home" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="home-outline"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+
+       <!-- Botón Crear viaje condicionado -->
+       <ion-item button 
+       *ngIf="tienePatente"
+       routerLink="/crear" 
+       routerDirection="root" 
+       routerLinkActive="selected">
+       <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+       <ion-label>Crear viaje</ion-label>
+     </ion-item>
+
+     <!-- Botón alternativo cuando no tiene patente -->
+     <!-- <ion-item button 
+       *ngIf="tienePatente"
+       (click)="mostrarMensajeNoPatente()">
+       <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+       <ion-label>Crear viaje</ion-label>
+     </ion-item> -->
+
+        <ion-item button routerLink="/solicitar" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="car-outline"></ion-icon>
+          <ion-label>Solicitar viaje</ion-label>
+        </ion-item>
+
+        <ion-item button routerLink="/historial" routerDirection="root" routerLinkActive="selected">
+          <ion-icon  id="correo" slot="start" name="clipboard-outline"></ion-icon>
+          <ion-label>Historial</ion-label>
+        </ion-item>
+
+        <ion-item button routerLink="/perfil-usuario" routerDirection="root" routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="person-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-item-divider>
+        <ion-label id="correo">Configuración</ion-label>
+      </ion-item-divider>
+
+      <ion-item button (click)="toggleTheme()">
+        <ion-icon id="correo" slot="start" [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+        <ion-label>Cambiar modo</ion-label>
+      </ion-item>
+
+      <ion-item button (click)="cerrarSesion()">
+        <ion-icon id="correo" slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+  <!-- Contenido principal -->
+  <ion-router-outlet id="main-content">
+    <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="header-title-container">
+        <img class="header-logo"  src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Te Llevo Logo">
+        <p class="tellevo">Te Llevo app</p>     </div>
+  </ion-toolbar>
+</ion-header>
+
+    <ion-content>
+      <div id="user-info">
+        <h1 id="contenedor">Perfil de Usuario</h1>
+      </div>
+
+      <div id="contenedor">
+        <ion-icon name="person-circle" class="user-icon"></ion-icon>
+
+        <div id="user-info">
+          <h2>{{ username }}</h2>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <form #profileForm="ngForm">
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input 
+              *ngIf="isEditing" 
+              [(ngModel)]="nombre" 
+              name="nombre" 
+              required
+              type="text">
+            </ion-input>
+            <p *ngIf="!isEditing">{{ nombre }}</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Apellido</ion-label>
+            <ion-input 
+              *ngIf="isEditing" 
+              [(ngModel)]="apellido" 
+              name="apellido" 
+              required
+              type="text">
+            </ion-input>
+            <p *ngIf="!isEditing">{{ apellido }}</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Correo Electrónico</ion-label>
+            <ion-input 
+              *ngIf="isEditing" 
+              [(ngModel)]="email" 
+              name="email" 
+              required
+              type="email">
+            </ion-input>
+            <p *ngIf="!isEditing">{{ email }}</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Número de Contacto</ion-label>
+            <ion-input 
+              *ngIf="isEditing" 
+              [(ngModel)]="numeroContacto" 
+              name="numeroContacto" 
+              required
+              type="tel">
+            </ion-input>
+            <p *ngIf="!isEditing">{{ numeroContacto }}</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">¿Tiene Auto?</ion-label>
+            <ion-select 
+              *ngIf="isEditing" 
+              [(ngModel)]="tieneAuto" 
+              name="tieneAuto" 
+              required>
+              <ion-select-option value="si">Sí</ion-select-option>
+              <ion-select-option value="no">No</ion-select-option>
+            </ion-select>
+            <p *ngIf="!isEditing">{{ tieneAuto === 'si' ? 'Sí' : 'No' }}</p>
+          </ion-item>
+
+          <ion-item *ngIf="tieneAuto === 'si'">
+            <ion-label position="stacked">Patente</ion-label>
+            <ion-input 
+              *ngIf="isEditing" 
+              [(ngModel)]="patente" 
+              name="patente" 
+              required
+              type="text">
+            </ion-input>
+            <p *ngIf="!isEditing">{{ patente }}</p>
+          </ion-item>
+
+          <div class="ion-padding">
+            <ion-button 
+              *ngIf="!isEditing" 
+              expand="block" 
+              (click)="editarPerfil()">
+              Editar Perfil
+            </ion-button>
+
+            <ion-button 
+              *ngIf="isEditing" 
+              expand="block" 
+              (click)="guardarCambios()"
+              [disabled]="!profileForm.valid">
+              Guardar Cambios
+            </ion-button>
+
+            <ion-button 
+              *ngIf="isEditing" 
+              expand="block" 
+              fill="outline" 
+              (click)="cancelarEdicion()">
+              Cancelar
+            </ion-button>
+          </div>
+          <br>
+          <br>
+        </form>
+      </div>
+    </ion-content>
+  </ion-router-outlet>
+</ion-app>

@@ -1,0 +1,84 @@
+#contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+
+    .theme-toggle {
+        margin-top: 10px; 
+        margin-left: auto;
+        margin-right: 70px; 
+        color: var(--ion-text-color);
+    }
+    .theme-toggle ion-icon {
+        font-size: 30px;
+    }
+}
+h1, .app-title, h2 {
+    color: var(--ion-color-primary) !important;
+    font-weight: bold;
+}
+
+.car-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#correo {
+    --background: var(--ion-item-background); 
+    --border-radius: 20px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    margin-bottom: 16px;
+    width: 90%;  
+    max-width: 400px;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+ion-icon.password-toggle {
+    right: 20px; 
+    transform: translateY(50%);
+    font-size: 27px;  
+    cursor: pointer;
+}
+@keyframes moveCar {
+    0% {
+      transform: translateX(+100%); /* Empieza fuera de la pantalla por la izquierda */
+    }
+    50% {
+      transform: translateX(-100%); 
+    }100% {
+      transform: translateX(0); /* Se queda en el centro */
+    }
+  }
+  
+  .car-image {
+    width: 200px;
+    height: auto;
+    animation: moveCar 5s ease-in-out forwards; /* Duración de 5 segundos, se queda en el centro al final */
+    position: relative;
+  }
+
+
+.dark-theme {
+    --ion-background-color: #003f88;
+    --ion-text-color: #ffffff;
+    --ion-item-background: #0056b3;
+    --ion-item-color: #ffffff;
+    --ion-color-primary: #000000;
+}
+
+.light-theme {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+    --ion-item-background: #f2f2f2;
+    --ion-item-color: #000000;
+    --ion-color-primary: #0056b3;
+}

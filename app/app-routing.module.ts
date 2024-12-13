@@ -16,42 +16,29 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'about',
-    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'driver',
-    loadChildren: () => import('./driver/driver.module').then( m => m.DriverPageModule)
+    path: 'perfil-usuario',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
   {
-    path: 'pasajeros',
-    loadChildren: () => import('./pasajeros/pasajeros.module').then( m => m.PasajerosPageModule)
+    path: 'crear',
+    loadChildren: () => import('./crear/crear.module').then( m => m.CrearPageModule)
   },
   {
-    path: 'registrarsec',
-    loadChildren: () => import('./registrarsec/registrarsec.module').then( m => m.RegistrarsecPageModule)
-  },
-  {
-    path: 'registrarsep',
-    loadChildren: () => import('./registrarsep/registrarsep.module').then( m => m.RegistrarsepPageModule)
-  },
-  {
-    path: 'restablecer',
-    loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
-  },
-  {
-    path: 'terminos',
-    loadChildren: () => import('./terminos/terminos.module').then( m => m.TerminosPageModule)
-  },
-  {
-    path: 'conductor',
-    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
+    path: 'solicitar',
+    loadChildren: () => import('./solicitar/solicitar.module').then( m => m.SolicitarPageModule)
   },
   {
     path: 'historial',
     loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
   },
- 
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,220 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main-content">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-title class="menu-logo">
+          Te Llevo App
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-content>
+      <ion-list lines="none">
+        <ion-item class="user-info">
+          <ion-avatar slot="start">
+            <ion-icon id="correo" name="person-circle" size="large"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ nombre || 'Usuario' }}</h2>
+            <h2>{{ apellido }}</h2>
+            <p id="correo">{{ gmail }}</p>
+          </ion-label>
+        </ion-item>
+  
+        <ion-item-divider>
+          <ion-label id="correo">Navegación</ion-label>
+        </ion-item-divider>
+  
+        <ion-menu-toggle auto-hide="false">
+          <ion-item button routerLink="/home" routerDirection="root" routerLinkActive="selected">
+            <ion-icon id="correo" slot="start" name="home-outline"></ion-icon>
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+  
+          <!-- Botón Crear viaje condicionado -->
+          <ion-item button 
+          *ngIf="tienePatente"
+          routerLink="/crear" 
+          routerDirection="root" 
+          routerLinkActive="selected">
+          <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+          <ion-label>Crear viaje</ion-label>
+        </ion-item>
+
+        <!-- Botón alternativo cuando no tiene patente -->
+        <!-- <ion-item button 
+          *ngIf="tienePatente"
+          (click)="mostrarMensajeNoPatente()">
+          <ion-icon id="correo" slot="start" name="add-circle-outline"></ion-icon>
+          <ion-label>Crear viaje</ion-label>
+        </ion-item> -->
+  
+          <ion-item button routerLink="/solicitar" routerDirection="root" routerLinkActive="selected">
+            <ion-icon id="correo" slot="start" name="car-outline"></ion-icon>
+            <ion-label>Solicitar viaje</ion-label>
+          </ion-item>
+  
+          <ion-item button routerLink="/historial" routerDirection="root" routerLinkActive="selected">
+            <ion-icon id="correo" slot="start" name="clipboard-outline"></ion-icon>
+            <ion-label>Historial</ion-label>
+          </ion-item>
+  
+          <ion-item button routerLink="/perfil-usuario" routerDirection="root" routerLinkActive="selected">
+            <ion-icon id="correo" slot="start" name="person-outline"></ion-icon>
+            <ion-label>Perfil</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+  
+        <ion-item-divider>
+          <ion-label id="correo">Configuración</ion-label>
+        </ion-item-divider>
+  
+        <ion-item button (click)="toggleTheme()">
+          <ion-icon id="correo" slot="start" [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+          <ion-label>Cambiar modo</ion-label>
+        </ion-item>
+  
+        <ion-item button (click)="cerrarSesion()">
+          <ion-icon id="correo" slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesión</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <div class="header-title-container">
+          <img class="header-logo"  src="https://www.soul.com.uy/Cuentas/suzuki/public/7fa1df622f.png" alt="Te Llevo Logo">
+          <p class="tellevo">Te Llevo app</p>     </div>
+    </ion-toolbar>
+  </ion-header>
+        
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="loadViajesFromLocalStorage()">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
+    <div class="ion-padding">
+      <!-- Debug info - opcional -->
+      <ion-card *ngIf="viajes.length > 0" class="stats-card">
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <div class="stat-item">
+                  <ion-icon id="correo" name="car-outline"></ion-icon>
+                  <div class="stat-text">
+                    <p id="correo">Total viajes</p>
+                    <h3>{{viajes.length}}</h3>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <div class="stat-item">
+                  <ion-icon id="correo" name="checkmark-circle-outline"></ion-icon>
+                  <div class="stat-text">
+                    <p id="correo">Disponibles</p>
+                    <h3>{{viajesDisponibles.length}}</h3>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card *ngIf="viajesDisponibles.length === 0" class="empty-state-card">
+        <ion-card-header>
+          <ion-icon  id="correo" name="car-outline" class="empty-state-icon"></ion-icon>
+          <ion-card-title  id="correo">No hay viajes disponibles</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p  id="correo">En este momento no hay viajes disponibles para solicitar.</p>
+          <p  id="correo">¡Vuelve a intentarlo más tarde!</p>
+        </ion-card-content>
+      </ion-card>
+  
+        <ion-card *ngFor="let viaje of viajesDisponibles" class="viaje-card">
+          <ion-card-header>
+            <ion-card-title id="correo">{{ viaje.nombre }}</ion-card-title>
+            <ion-card-subtitle id="correo">
+              <ion-icon id="correo" name="location-outline"></ion-icon>
+              {{ viaje.destino }}
+            </ion-card-subtitle>
+          </ion-card-header>
+  
+          
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12" size-md="6">
+                  <ion-item lines="none">
+                    <ion-icon id="correo" name="car-outline" slot="start"></ion-icon>
+                    <ion-label>
+                      <p id="correo">Patente</p>
+                      <h3>{{ viaje.patente }}</h3>
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12" size-md="6" *ngIf="viaje.monto">
+                  <ion-item lines="none">
+                    <ion-icon id="correo" name="cash-outline" slot="start"></ion-icon>
+                    <ion-label>
+                      <p id="correo">Monto</p>
+                      <h3>${{ viaje.monto }}</h3>
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+  
+              <ion-row *ngIf="viaje.fecha">
+                <ion-col size="12">
+                  <ion-item lines="none">
+                    <ion-icon id="correo" name="calendar-outline" slot="start"></ion-icon>
+                    <ion-label>
+                      <p id="correo">Fecha</p>
+                      <h3 >{{ viaje.fecha }}</h3>
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <!-- Nueva sección de capacidad -->
+              <ion-row>
+                <ion-col size="12">
+                  <div class="capacidad-info">
+                    <div class="asientos-label">
+                      <ion-icon id="correo" name="people-outline"></ion-icon>
+                      <span id="correo">Capacidad:</span>
+                    </div>
+                    <div class="asientos-disponibles">
+                      {{ getAsientosDisponibles(viaje) }} de {{ viaje.capacidad }} asientos disponibles
+                    </div>
+                    <ion-progress-bar
+                      [value]="viaje.asientosOcupados / viaje.capacidad"
+                      [color]="getAsientosDisponibles(viaje) > 0 ? 'success' : 'danger'"
+                    ></ion-progress-bar>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+  
+            <ion-button 
+              expand="block" 
+              (click)="solicitarViaje(viaje)" 
+              class="ion-margin-top"
+              [disabled]="getAsientosDisponibles(viaje) <= 0">
+              <ion-icon name="hand-right-outline" slot="start"></ion-icon>
+              {{ getAsientosDisponibles(viaje) > 0 ? 'Solicitar Viaje' : 'Viaje Lleno' }}
+            </ion-button>
+     
+        </ion-card>
+  
+    </div>
+  </ion-content>
+</ion-app>
